@@ -1,0 +1,63 @@
+package tests;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
+public class Test1 {
+
+	public WebDriver driver;
+	
+	String browser;
+	String url;
+	String userName;
+	String password;
+	
+	
+	
+	@BeforeClass
+	public void readConfig() {
+		try {
+			InputStream input = new FileInputStream("src/main/java/config/config.properties");
+			
+			Properties prop = new Properties();
+			prop.load(input);
+			
+			password = prop.getProperty("browser");
+			password = prop.getProperty("url");
+			password = prop.getProperty("userName");
+			password = prop.getProperty("password");
+			
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
+	@Test
+	public void init() {
+		if(browser.equalsIgnoreCase("Chrome")) {
+			System.setProperty("webdriver.chrome.driver", "driver/chromedriver.exe");
+			driver = new ChromeDriver();
+			
+		}else if(browser.equalsIgnoreCase("edge")) {
+			System.setProperty("webdriver.edge.driver", "driver/msedgedriver.exe");
+			driver = new EdgeDriver();
+			
+		}else {
+			System.out.println("enter valid browser");
+		}
+		
+		driver.manage().deleteAllCookies();
+		driver.manage().window().maximize();
+		driver.get(url);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	}
+	
+}

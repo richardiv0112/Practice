@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="1" total="2" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2024-08-12T13:45:29 CDT" name="Default suite" finished-at="2024-08-12T13:45:43 CDT" duration-ms="13359">
+    <groups>
+    </groups>
+    <test started-at="2024-08-12T13:45:29 CDT" name="Default test" finished-at="2024-08-12T13:45:43 CDT" duration-ms="13359">
+      <class name="tests.Test1">
+        <test-method is-config="true" signature="readConfig()[pri:0, instance:tests.Test1@47e2e487]" started-at="2024-08-12T13:45:29 CDT" name="readConfig" finished-at="2024-08-12T13:45:29 CDT" duration-ms="4" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- readConfig -->
+        <test-method is-config="true" signature="init()[pri:0, instance:tests.Test1@47e2e487]" started-at="2024-08-12T13:45:29 CDT" name="init" finished-at="2024-08-12T13:45:34 CDT" duration-ms="4679" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- init -->
+        <test-method signature="keyboardEvent()[pri:0, instance:tests.Test1@47e2e487]" started-at="2024-08-12T13:45:34 CDT" name="keyboardEvent" finished-at="2024-08-12T13:45:43 CDT" duration-ms="8656" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- keyboardEvent -->
+      </class> <!-- tests.Test1 -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

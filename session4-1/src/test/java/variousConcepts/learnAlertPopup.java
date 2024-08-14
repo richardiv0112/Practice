@@ -1,0 +1,50 @@
+package variousConcepts;
+
+import java.util.concurrent.TimeUnit;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class learnAlertPopup {
+	public WebDriver driver;
+
+	public By USER_NAME_FIELD = By.xpath("//input[@id='user_name']");
+	public By PASSWORD_FIELD = By.xpath("//input[@id='password']");
+	public By LOGIN_FIELD = By.xpath("//*[@id='login_submit']");
+	public By DASHBOARD_HEADER_FIELD = By.xpath("html/body/div[1]/section/div/div[2]/div/div/header/div/strong");
+	public By ADD_CUSTOMER_TITLE_FIELD = By.xpath("//strong[text()='New Customer']");
+	public By CUSTOMERS_FIELD = By.xpath("/html/body/div[1]/aside[1]/div/nav/ul[2]/li[2]/a/span");
+	public By ADD_CUSTOMER_FIELD = By.xpath("//*[@id=\"customers\"]/li[2]/a/span");
+	public By FULL_NAME_FIELD = By.xpath("//*[@id=\"general_compnay\"]/div[1]/div/input");
+	public By COMPANY_DROPDOWN_FIELD = By.xpath("//select[@name='company_name']");
+
+	@Before
+	public void init() {
+		System.setProperty("webdriver.chrome.driver", "driver/chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.manage().deleteAllCookies();
+		driver.manage().window().maximize();
+		driver.get("https://codefios.com/ebilling/");
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	}
+
+	@Test
+	public void usernameAlertTest() {
+		driver.findElement(LOGIN_FIELD).click();
+		String alert = driver.switchTo().alert().getText();
+		//the alert has popped up but the driver is not on the alert
+		//use driver.switchTo().alert() to navigate the driver to the popup
+		driver.switchTo().alert().accept();
+		System.out.println(alert);
+	}
+
+	//@After
+	public void teardown() {
+		driver.close();
+		driver.quit();
+	}
+}

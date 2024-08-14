@@ -1,0 +1,174 @@
+package variousConcepts;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+import java.util.Random;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+
+
+
+public class CrmTest {
+	public WebDriver driver;
+	String browser = null;
+	String url;
+	String userName = "demo@codefios.com";
+	String password = "abc123";
+	String fullName = "Richard B";
+	String companyName = "Techfios";
+	String email = "demo@codefios.com";
+	String phoneNumber = "1234567";
+	String address = "12 Tech Ln";
+	String city = "Dallas";
+	String zipCode = "";
+	String country = "Afghanistan        ";
+	
+	
+	//test or mock data
+	String userNameAlertMsg = "Please enter your user name";
+	String newCustomerHeader = "New Customer";
+	
+	By USER_NAME_FIELD = By.xpath("//input[@id='user_name']");
+	By PASSWORD_FIELD = By.xpath("//input[@id='password']");
+	By LOGIN_FIELD = By.xpath("//*[@id='login_submit']");
+	By TITLE_FIELD = By.xpath("//title[text()='Codefios']");
+	By DASHBOARD_HEADER_FIELD = By.xpath("/html/body/div[1]/section/div/div[2]/div/div/header/div/strong");
+	By ADD_CUSTOMER_TITLE_FIELD = By.xpath("//strong[text()='New Customer']");
+	By CUSTOMERS_FIELD = By.xpath("/html/body/div[1]/aside[1]/div/nav/ul[2]/li[2]/a/span");
+	By ADD_CUSTOMER_FIELD = By.xpath("//*[@id=\"customers\"]/li[2]/a/span");
+	
+	By FULL_NAME_FIELD = By.xpath("//*[@id='general_compnay']/div[1]/div/input");
+	By COMPANY_DROPDOWN_FIELD = By.xpath("//select[@name='company_name']");
+	By EMAIL_FIELD = By.xpath("//*[@id='general_compnay']/div[3]/div/input");
+	By PHONE_NEMBER_FIELD = By.xpath("//*[@id='phone']");
+	By ADDRESS_FIELD = By.xpath("//*[@id='general_compnay']/div[5]/div/input");
+	By CITY_FIELD = By.xpath("//*[@id='general_compnay']/div[6]/div/input");
+	By ZIP_CODE_FIELD = By.xpath("//*[@id='port']");
+	By COUNTRY_FIELD = By.xpath("//*[@id='general_compnay']/div[8]/div[1]/span/span[1]/span");
+	
+	
+	@BeforeMethod
+	public void init() {
+		if(browser.equalsIgnoreCase("Chrome")) {
+			System.setProperty("webdriver.chrome.driver", "driver/chromedriver.exe");
+			driver = new ChromeDriver();
+		}else if(browser.equalsIgnoreCase("Edge")){
+			System.setProperty("webdriver.edge.driver", "driver/msedgedriver.exe");
+			driver = new EdgeDriver();
+		} else {
+			System.out.println("insert valid browser");
+		}
+		
+//		System.setProperty("webdriver.chrome.driver", "driver/chromedriver.exe");
+//		driver = new ChromeDriver();
+//		
+//		System.setProperty("webdriver.edge.driver", "driver/msedgedriver.exe");
+//		driver = new EdgeDriver();
+		
+		driver.manage().deleteAllCookies();
+		driver.manage().window().maximize();
+		driver.get(url);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	}
+
+	@BeforeClass
+	public void readConfig() {
+		//InputStream //BufferReader //FileReader //Scanner
+		
+		try {
+			InputStream input = new FileInputStream("src/main/java/config/config.properties");
+			
+			Properties prop = new Properties();
+			prop.load(input);
+			browser = prop.getProperty("browser");
+			url = prop.getProperty("url");
+//			userName = prop.getProperty("userName");
+//			password = prop.getProperty("password");
+			
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
+	@Test
+	public void loginTest() {
+
+
+		driver.findElement(USER_NAME_FIELD).sendKeys(userName);
+		driver.findElement(PASSWORD_FIELD).sendKeys(password);
+		driver.findElement(LOGIN_FIELD).click();
+		Assert.assertEquals(driver.findElement(DASHBOARD_HEADER_FIELD).getText(), "Dashboard", "page not found");
+		
+		
+		
+		
+
+	}
+	
+	@Test
+	public void validateAlertMessages() {
+		driver.findElement(LOGIN_FIELD).click();
+		String actualUserNameAlertMsg = driver.switchTo().alert().getText();
+		Assert.assertEquals(actualUserNameAlertMsg, userNameAlertMsg, "Alert does not match");
+		driver.switchTo().alert().accept();
+		driver.findElement(USER_NAME_FIELD).sendKeys(userName);
+		driver.findElement(LOGIN_FIELD).click();
+		String actualPasswordAlertMsg = driver.switchTo().alert().getText();
+		Assert.assertEquals(actualPasswordAlertMsg, "Please enter your password", "Alert does not match");
+		driver.switchTo().alert().accept();
+		
+	}
+	@Test
+	public void addCustomer() {
+		loginTest();
+		
+		driver.findElement(CUSTOMERS_FIELD).click();
+		driver.findElement(ADD_CUSTOMER_FIELD).click();
+		Assert.assertEquals(driver.getTitle(), "Manage Client", "page not found");
+		
+		//this is useful for running multiple tests at once
+		//the random number generator will add random numbers to the data creating unique entries
+		
+		
+		
+		driver.findElement(By.xpath("//*[@id=\"general_compnay\"]/div[1]/div/input")).sendKeys(fullName + generateRandomNumber(99));
+		selectFromDropdown(COMPANY_DROPDOWN_FIELD, companyName);
+		driver.findElement(EMAIL_FIELD).sendKeys(generateRandomNumber(99) + email);
+		driver.findElement(PHONE_NEMBER_FIELD).sendKeys(generateRandomNumber(999) + phoneNumber);
+		selectFromDropdown(COUNTRY_FIELD, country);
+	}
+	
+	
+
+	private void selectFromDropdown(By fieldName, String data) {
+		Select sel = new Select(driver.findElement(fieldName));
+		sel.selectByVisibleText(data);
+		
+	}
+
+	private int generateRandomNumber(int boundryNumber) {
+		Random rnd = new Random();
+		int randomNumber = rnd.nextInt(boundryNumber);
+		
+		return randomNumber;
+	}
+
+
+//	@AfterMethod
+	public void teardown() {
+		driver.close();
+		driver.quit();
+	}
+}

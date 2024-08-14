@@ -1,0 +1,51 @@
+package variousConcepts;
+
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class LearnWindowHandle {
+
+	public WebDriver driver;
+
+	By SEARCH_BAR_FIELD = By.xpath("//*[@id='ybar-sbq']");
+	By SEARCH_BUTTON_FIELD = By.xpath("//*[@id='ybar-search']");
+	By SELENIUM_LINK_FIELD = By.xpath("//*[@id='web']/ol/li[2]/div/div[1]/h3/a");
+	
+
+	@Before
+	public void init() {
+		System.getProperty("webdriver.chrome.driver", "driver/chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.manage().deleteAllCookies();
+		driver.manage().window().maximize();
+		driver.get("https://www.yahoo.com/");
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	}
+
+	@Test
+	public void keyboardEventTest() {
+		driver.findElement(SEARCH_BAR_FIELD).sendKeys("selenium");
+		driver.findElement(SEARCH_BUTTON_FIELD).click();
+		
+//		driver.getWindowHandle()
+		
+		Set<String> handles = driver.getWindowHandles()
+		
+		for (String str : handles) {
+			System.out.println(str);
+		}
+		
+//		driver.findElement(SELENIUM_LINK_FIELD).click();
+		
+		
+
+	}
+}

@@ -1,0 +1,57 @@
+package variousConcepts;
+
+import java.util.concurrent.TimeUnit;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class CrmTest {
+
+	public WebDriver driver;
+
+	@Before
+	public void init() {
+		System.setProperty("webdriver.chrome.driver", "driver/chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.manage().deleteAllCookies();
+		driver.manage().window().maximize();
+		driver.get("https://codefios.com/ebilling/");
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	}
+	
+	@Test
+	public void loginTest() {
+		WebElement USER_NAME_ELEMENT = driver.findElement(By.xpath("//input[@id='user_name']"));
+		WebElement PASSWORD_ELEMENT = driver.findElement(By.xpath("//input[@id='password']"));
+		WebElement SIGN_IN_ELEMENT = driver.findElement(By.xpath("//*[@id='login_submit']"));
+		WebElement DASHBOARD_ELEMENT = driver.findElement(By.xpath("html/body/div[1]/section/div/div[2]/div/div/header/div/strong"));
+		
+		By USER_NAME_FIELD = By.xpath("//input[@id='user_name']");
+		By PASSWORD_FIELD = By.xpath("//input[@id='password']");
+		By DASHBOARD_HEADER_FIELD = By.xpath("html/body/div[1]/section/div/div[2]/div/div/header/div/strong");
+		
+		
+		//Instead of using driver.findElement(By.xpath("//input[@id='user_name']")); Turn it into a WebElement
+		//Helpful when using the same code more than once
+		//FIELD
+		
+		//.clear() will clear any text for an input webelement
+		USER_NAME_ELEMENT.clear();
+		USER_NAME_ELEMENT.sendKeys("demo@codefios.com");
+		PASSWORD_ELEMENT.sendKeys("abc123");
+		SIGN_IN_ELEMENT.click();
+		
+		//The code does not know that I have landed on the right page when I ran the test
+		//Using Asserts will fix that
+		Assert.assertTrue("dashboard page not available", DASHBOARD_HEADER_ELEMENT.isDisplayed());
+		
+		//Used this line as practice for XPATH Axes
+		//driver.findElement(By.xpath("//div[@class='wrapper ']/descendant::button")).click();
+	}
+
+}

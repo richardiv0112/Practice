@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="MavenProjectWizardLocationPage">
+		<list key="location">
+			<item value="C:\Users\richa\Selenium_Practice\testin\src\test\java\objectspyTest\codefios.java"/>
+			<item value="C:\Users\richa\Selenium_Practice\testin\src\test\java\objectspyTest\test.java"/>
+			<item value="C:\Users\richa\Selenium_Practice\practice\src\test\java\practice\LogIn.java"/>
+			<item value="C:\Users\richa\Selenium_Practice\crm"/>
+			<item value="C:\Users\richa\Selenium_Practice"/>
+		</list>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+	</section>
+	<section name="MavenProjectWizardArchetypePage">
+		<item key="catalog" value="All Catalogs"/>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+	</section>
+	<section name="Maven2ProjectWizardArchifactPage">
+		<list key="package">
+			<item value="com.techfios.NGTesting"/>
+			<item value="com.techfios.testingWithTestNG"/>
+			<item value="com.techfios.session5"/>
+			<item value="com.techfios.fromScratch"/>
+			<item value="com.techfios.session4"/>
+			<item value="com.techfios.session4_1"/>
+			<item value="com.techfios.session3"/>
+			<item value="space.objectspy.testin"/>
+			<item value="com.techfios.homeworkSession2"/>
+			<item value="com.techfios.session2"/>
+			<item value="com.techfios.testing"/>
+		</list>
+		<list key="groupId">
+			<item value="com.techfios"/>
+			<item value="space.objectspy"/>
+		</list>
+		<list key="artifactId">
+			<item value="NGTesting"/>
+			<item value="testingWithTestNG"/>
+			<item value="session5"/>
+			<item value="fromScratch"/>
+			<item value="session4"/>
+			<item value="session4-1"/>
+			<item value="session3"/>
+			<item value="testin"/>
+			<item value="homeworkSession2"/>
+			<item value="session2"/>
+			<item value="testing"/>
+		</list>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+		<list key="version">
+			<item value="0.0.1-SNAPSHOT"/>
+		</list>
+	</section>
+	<section name="MavenProjectWizardArtifactPage">
+		<list key="groupId">
+		</list>
+		<list key="name">
+		</list>
+		<list key="artifactId">
+		</list>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+		<list key="version">
+			<item value="0.0.1-SNAPSHOT"/>
+		</list>
+	</section>
+	<section name="org.eclipse.m2e.core.pom.overview">
+	</section>
+	<section name="org.eclipse.m2e.core.pom.dependencies">
+	</section>
+</section>

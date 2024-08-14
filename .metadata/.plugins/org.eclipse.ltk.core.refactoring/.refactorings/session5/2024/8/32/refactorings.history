@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;driver&apos; to &apos;NGTesting&apos;&#x0D;&#x0A;- Original project: &apos;session5&apos;&#x0D;&#x0A;- Destination element: &apos;NGTesting&apos;&#x0D;&#x0A;- Original element: &apos;driver&apos;" description="Copy folder" destination="=NGTesting" element1="driver" files="0" flags="589830" folders="1" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1723062968007" units="0" version="1.0"/>
+</session>
