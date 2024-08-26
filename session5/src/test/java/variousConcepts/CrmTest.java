@@ -19,7 +19,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 
-
+//GITHUB BREAKDOWN ON CLASS 7 VIDEO
+//IMPORTANT TO KNOW FOR INTERVIEWS
 
 public class CrmTest {
 	public WebDriver driver;
@@ -152,9 +153,9 @@ public class CrmTest {
 	
 	
 
-	private void selectFromDropdown(By fieldName, String data) {
+	private void selectFromDropdown(By fieldName, String visibleText) {
 		Select sel = new Select(driver.findElement(fieldName));
-		sel.selectByVisibleText(data);
+		sel.selectByVisibleText(visibleText);
 		
 	}
 
